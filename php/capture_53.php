@@ -11,4 +11,5 @@
   
   add_list("Hello");
   var_dump($file_list);
-?>
+
+ print($file_list);

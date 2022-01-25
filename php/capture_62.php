@@ -9,5 +9,6 @@
       }else{
           array_push($odd_num, $num);
       }
+  
   }
 ?>
