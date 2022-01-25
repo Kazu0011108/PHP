@@ -4,7 +4,7 @@ function write_data_to_csv(){
  $response = "hugahuga";
 
  if(isset($response["results"]["error"])){
-     return print("エラーが発生しました!")
+     return print("エラーが発生しました!");
  }
 
  return print_r($restaurants);
