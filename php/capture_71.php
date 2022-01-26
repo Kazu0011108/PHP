@@ -1,6 +1,6 @@
 <?php 
- $animals = ["dog", "cat", "bird", "tiger"];
-  foreach ($animals as $animal){
-         print($animal."\n");
-     }
+   for($i=1; $i<=30; $i++){
+       print($i."\n");
+   }
+   
 ?>
