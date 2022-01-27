@@ -1,7 +1,13 @@
 <?php 
+
+require 'vendor/autoload.php';
+
+use GuzzleHttp\Client;
+
 function write_data_to_csv(){
+
  $restaurants = [];
- $response = "hugahuga";
+ $response = ["hugahuga"];
 
  if(isset($response["results"]["error"])){
      return print("エラーが発生しました!");
