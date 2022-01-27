@@ -4,23 +4,41 @@ require 'vendor/autoload.php';
 
 use GuzzleHttp\Client;
 
-function write_data_to_csv(){
 
- $restaurants = [];
- $response = ["hugahuga"];
+#初期設定
+$KEYID = "149e7fcc939dfc15";
+ $HIT_PER_PAGE = 100;
+ $PREF ="Z011";
+ $FREEWORD = "調布";
+ $FORMAT ="json";
+
+ $PARAMS = ["key"=> $KEYID, "count"=>$HIT_PER_PAGE, "pref"=>$PREF, "keyword"=>$FREEWORD, "format"=>$FORMAT];
+
+function write_data_to_csv($params){
+
+ $restaurants = [["名称","営業日","住所","アクセス"]];
+ $client = new Client();
+ try{
+     $json_res = $client->request('GET', "http://webservice.recruit.co.jp/hotpepper/gourmet/v1/", ['query' => $params])->getBody();
+ }catch(Exception $e){
+     return print("エラーが発生しました。APIのURLを確認してください。");
+ }
+ $response = json_decode($json_res,true);
 
  if(isset($response["results"]["error"])){
-     return print("エラーが発生しました!");
+     return(print("エラーが発生しました。APIのパラメータを確認してください。"));
  }
- if(isset($response["results"]["shop"])){
-    foreach($response["results"]["shop"] as $i){
-        $restaurant_name =$i["name"];
-        $restaurants[] = $restaurant_name;
-    }
- }
-
- return print_r($restaurants);
+foreach($response["results"]["shop"] as $restaurant){
+    $rest_info = [$restaurant["name"],$restaurant["open"],$restaurant["address"],$restaurant["access"]];
+    $restaurants[] = $rest_info;
+}
+$handle = fopen("restaurants_list.csv", "wb");
+foreach ($restaurants as $values){
+    fputcsv($handle, $values);
 }
 
-write_data_to_csv();
+fclose($handle);
+return print_r($restaurants);
+}
+write_data_to_csv($PARAMS);
 ?>
