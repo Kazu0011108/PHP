@@ -29,13 +29,13 @@ class CategoriesTableSeeder extends Seeder
             '19~20インチ', 'デスクトップPC', 'タブレット'
         ];
 
-        foreach ($major_category_names as $major_category_name) {
-            if($major_category_name == '本'){
-                foreach($book_categories as $book_category) {
-                    Category::create([
-                        'name' => $book_category,
-                        'description' => $book_category,
-                        'major_category_name'=> $major_category_name
+        foreach ($major_category_names as $major_category_name) { //foreach文を使って$major_category_namesの配列から「本」、「コンピュータ」、「ディスプレイ」の要素を取り出すとき
+            if($major_category_name == '本'){//もし大項目が「本」の場合には
+                foreach($book_categories as $book_category) {//本のカテゴリーから一つずつ要素を取り出して
+                    Category::create([//　新しくカテゴリの変数を作って、値を変数に代入する
+                        'name' => $book_category, //$book_categoryを'name'に代入
+                        'description' => $book_category,//$book_categoryを'description'に代入
+                        'major_category_name'=> $major_category_name//$major_category_nameを'major_category_name'に代入
                     ]);
                 }
             }
