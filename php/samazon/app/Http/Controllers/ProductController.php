@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Product;
-  use App\Category;
+use App\Category;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -13,13 +13,11 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $products = Product::all();//Productモデルを使ってすべての商品データをデータベースから取得、取得したデータを変数＄productsに代入している。
-
-        return view('products.index', compact('products'));
-        //view関数の第一引数'products.index'で表示させるビューのファイルを指定すると左のresource\views\の中にあるindex(welcome).blade.phpが呼び出される。
-        //第二引数はコントローラからviewに渡す変数を指定。よく使われるのがcompact()で上記のように記述すると、変数$productsがviewに渡される。
+        $products = Product::all();
+ 
+         return view('products.index', compact('products'));
     }
 
     /**
@@ -29,8 +27,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();//$categoriesにすべてのカテゴリを保存し、ビューへと渡している
-        return view('products.create', compact('categories'));//view関数を使って使用するビューを指定するだけ
+        $categories = Category::all();
+ 
+         return view('products.create', compact('categories'));
     }
 
     /**
@@ -41,18 +40,14 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-      $product = new Product();//Productモデルの変数を作成する
-      $product->name = $request->input('name');
-      $product->discription = $request->input('discription');
-      $product->price = $request->input('price');
-      //フォームから送信されたデータが格納されている$request変数の中から、nameとdescriptionなどの項目のデータをそれぞれのカラムに保存。
-      $product->category_id = $request->input('category_id');
-      $product->save();//データベースへと保存
-
-      return redirect()->route('products.show',['id =>$product->id']);
-      //データが保存された後、リダイレクト（別のページに移動すること）を行っています。storeなどのアクションではビューを持たないので、この処理を書き忘れると真っ白な画面のまま。
-      //リダイレクトさせる場合はredirect()を使います。またリダイレクト先はredirect()->route('products.show', ['id' => $product->id]);のようにroute関数にリダイレクトするコントローラとアクションを指定する。
-      //今回の場合は新しく作成したデータを表示するshowアクションへとリダイレクトさせています。そういった場合はroute('products.show', ['id' => $product->id])のように、表示したいデータのIDを渡す。
+        $product = new Product();
+         $product->name = $request->input('name');
+         $product->description = $request->input('description');
+         $product->price = $request->input('price');
+         $product->category_id = $request->input('category_id');
+         $product->save();
+ 
+         return redirect()->route('products.show', ['id' => $product->id]);
     }
 
     /**
@@ -75,7 +70,8 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         $categories = Category::all();
-        return view('products.edit', compact('product', 'categories'));
+ 
+         return view('products.edit', compact('product', 'categories'));
     }
 
     /**
@@ -87,13 +83,13 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        $product->name =$request->input('name');
+        $product->name = $request->input('name');
         $product->description = $request->input('description');
         $product->price = $request->input('price');
         $product->category_id = $request->input('category_id');
-        $product-> update();
+        $product->update();
 
-        return redirect()->route('products.show',['id'=> $product->id]);
+        return redirect()->route('products.show', ['id' => $product->id]);
     }
 
     /**
@@ -104,8 +100,8 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-       $product->delete();
-
-       return redirect()->route('products.index');
+        $product->delete();
+ 
+         return redirect()->route('products.index');
     }
 }

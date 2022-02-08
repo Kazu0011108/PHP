@@ -1,5 +1,5 @@
 {{$product->name}}
 {{$product->description}}
-{{$product->price}}
+{{$product->price}} 
 
 <a href="/products">Back</a>
