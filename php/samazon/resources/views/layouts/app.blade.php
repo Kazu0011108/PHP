@@ -11,7 +11,8 @@
 
     <!-- Scripts -->
     <script src="{{ secure_asset('js/app.js') }}" defer></script>
-    <script src="https://kit.fontawesome.com/XXXXXXXXXX.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/aee0a37deb.js" crossorigin="anonymous"></script>
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
