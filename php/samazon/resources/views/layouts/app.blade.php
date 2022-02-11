@@ -11,11 +11,11 @@
 
     <!-- Scripts -->
     <script src="{{ secure_asset('js/app.js') }}" defer></script>
-<<<<<<< HEAD
-=======
+
+
     <script src="https://kit.fontawesome.com/aee0a37deb.js" crossorigin="anonymous"></script>
 
->>>>>>> use_css_framework
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -23,7 +23,7 @@
 
     <!-- Styles -->
     <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
-<<<<<<< HEAD
+
     <link href="{{ secure_asset('css/samazon.css')}}" rel="stylesheet"> 
 </head>
 <body>
@@ -40,7 +40,6 @@
     </div>
 </body>
 </html>
-=======
     <link href="{{ secure_asset('css/samazon.css')}}" rel="stylesheet">
 </head>
->>>>>>> use_css_framework
+
